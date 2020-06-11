@@ -14,7 +14,7 @@ TransAnnot 是一款用于转录本结构注释的软件。
 
 ## FAST RUN
 
-	python -f [fasta] -g [genome fasta] -o [output directory] -a[annot gtf] -p [process] --use_minimap2 [1] --use_hisat2 [hisat2 index]
+	python main.py -f [fasta] -g [genome fasta] -o [output directory] -a[annot gtf] -p [process] --use_minimap2 [1] --use_hisat2 [hisat2 index]
 
 ## 软件运行
 
