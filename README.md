@@ -28,9 +28,9 @@ TransAnnot 是一款用于转录本结构注释的软件。
 	* 默认使用的映射软件、映射软件的INDEX文件路径
 	* 参考基因组(FASTA)、参考基因组注释文件（GTF）、默认PROCESS数
 
-3. 如有设置好的基础配置文件，运行某一样本时仅需提供__输入fasta文件__和__输出文件夹路径__即可。可由`-c config`设置这两行，也可由`-f [fatsa] -o [output]`设置
+3. 如有设置好的基础配置文件，运行某一样本时仅需提供**输入fasta文件**和**输出文件夹路径**即可。可由`-c config`设置这两行，也可由`-f [fatsa] -o [output]`设置
 
-4. 软件支持reads\transcript\gene水平的表达量统计，需要通过`--tpm`参数或`-c config`输入基于__reads ID__的表达量列表
+4. 软件支持reads\transcript\gene水平的表达量统计，需要通过`--tpm`参数或`-c config`输入基于**reads ID**的表达量列表
 
 5. 软件支持多样本的联合分析\表达量统计，可通过单独运行[TransAnnotMerge.py]()实现
 
