@@ -10,7 +10,7 @@ TransAnnot 是一款用于转录本结构注释的软件。
 
  * HISAT2/MINIMAP2/GMAP中至少一款软件
  * samtools
- * python3 （仅使用基础模块）
+ * python3 （仅使用源生模块）
 
 ## FAST RUN
 
@@ -32,7 +32,7 @@ TransAnnot 是一款用于转录本结构注释的软件。
 
 4. 软件支持reads\transcript\gene水平的表达量统计，需要通过`--tpm`参数或`-c config`输入基于**reads ID**的表达量列表
 
-5. 软件支持多样本的联合分析\表达量统计，可通过单独运行[TransAnnotMerge.py]()实现
+5. 软件支持多样本的联合分析\表达量统计，可通过单独运行[TransAnnotMerge.py]()实现，具体操作说明见后续。
 
 ## 运行结果
 
@@ -69,6 +69,78 @@ TransAnnot 是一款用于转录本结构注释的软件。
 * `diff_to_transcript_end`: 3` site difference of reads and annotation transcript in reference genome
 * `exon_miss_to_transcript_start`: number of exon missed in 5` site between reads and transcript annotation
 * `exon_miss_to_transcript_end`: number of exon missed in 3` site between reads and transcript annotation
+
+## TransAnnot.Config
+
+配置文件分为**基础配置文件**和**临时配置文件**两种。
+
+基础配置文件：需放置在软件目录下，由软件自动检查，无需参数导入。该配置文件仅允许修改参数，不允许删除或增加参数。该配置文件中的参数，优先级最低，通常用来设置不需要频繁修改的参数。
+
+临时配置文件：可存放于任意位置，由`-c`参数导入。该配置文件可任意增删修改，参数优先级高于基础配置文件，如二者有冲突则使用该配置文件中的参数。通常用来单独配置随样本变化的参数。不需要频繁改动的参数可删除以保持视觉上的清爽。
+
+配置文件相关参数释义：
+
+* `FASTA`: `[path]`，输入文件，fa格式
+* `OUTPUT_DIR`: `[path]`，输出文件夹
+* `GENOME_FA`: `[path]`，参考基因组fa文件
+* `GTF_ANNOTATION`:`[path]`，注释gtf文件
+* `PROCESS`: `[int]`,并行进程数
+* `SAMPLE_UNIQUE_NAME`:`[string]`,样本名，后续如果有多样本合并时，该名称需唯一
+* `SAMTOOLS`:`[path]`，samtools的运行路径
+* `USE_HISAT2`: `[int]`，是否使用Hisat2，0代表不用，1代表使用
+* `HISAT2`: `[path]`,Hisat2的运行路径
+* `HISAT2_INDEX`: `[path]`，Hisat2 index的路径，由`hisat2-build`生成
+* `USE_MINIMAP2`: `[int]`，是否使用Minimap2，0代表不用，1代表使用
+* `MINIMAP2`: `[path]`，Minimap2的运行路径
+* `USE_GMAP`: `[int]`，是否使用GMAP，0代表不用，1代表使用
+* `GMAP`: `[path]`，GMAP的运行路径
+* `GMAP_INDEX`: `[path]`,GMAP index的路径，由`gmap_build`生成
+* `TPM_LIST`: `[path]`，Isoform的表达量文件，可选参数，如有则结果将包含定量信息，空白则不包含
+* `READ_LENGTH`: `[int]`，二代映射fa的read length，默认100
+* `READ_OVERLAP`: `[int]`，二代映射fa的read overlap，默认80
+* `MIN_READ_LENGTH`: `[int]`，二代映射fa的最短长度，默认30
+* `REPORT_IN_RUNNING`: `[int]`，是否在运行中实时打印进程报告，0表示静默，1表示实时输出
+
+
+## TransAnnotMerge
+
+用于多样本的联合分析
+
+举个例子，当样本1中发现了geneA的一个新转录本，样本2中同样发现了geneA的一个新转录本，然而他们在各自的结果文件中都叫做`geneA_NNC_1`，这个时候如何判断两个`geneA_NNC_1`是否具有相同结构、是不是相同的新转录本呢。
+
+再举个例子，我想要样本1、2、3中所有基因\转录本的表达量矩阵，然而各样本中都存在独特的、其他样本中没有的基因\转录本，该怎么办？
+
+此时可交由`TranAnnotMerge`处理。`TranAnnotMerge`将所有样本中的Isoform重新编排聚类，对新转录本、基因统一分配新的ID，输出新的聚类结果，当提供表达量数据时输出全样本的表达量矩阵
+
+### TransAnnotMerge运行命令
+
+`python TranAnnotMerge -c MergeConfig -o outputdir -m [TPM/FLC/None]`
+
+包含3个参数：
+
+* `-c`： Merge Config，由4列内容组成，分别为[样本ID]()，[{sample_id}.annot.stat]()文件，[{sample_id}.annot.bed]()文件，[{sample_id}.annot.db.pickle]()文件。形如
+
+| #sample | stat | bed | db |
+| ------- | ---- | --- | -- |
+| ------- | ---- | --- | -- |
+
+* `-o`: 融合结果的输出目录
+* `-m`：选定表达量矩阵中的数值表示(需要前序分析中导入了表达量文件)，FLC指 full length count，不加此参数则无表达量矩阵
+
+### TransAnnotMerge流程演示
+
+1. 从fa中提取Isoform表达量文件(exp)：`python fa2exp.py -f [fa] -o [exp]`
+2. 将exp写入到**临时配置文件**中的**TPM_LIST**中，或用`-tpm`导入，运行TransAnnot：`python main.py -c config -tpm exp`
+3. 汇总各样本结果得到[MergeConfig]()，运行TranAnnotMerge: `python TranAnnotMerge -c MergeConfig -o outputdir -m TPM`
+
+### TransAnnotMerge结果文件
+
+* `{sample_id}.reads.exp`： 各样本read水平结果文件
+* `{sample_id}.transcript.exp`： 各样本transcript水平结果文件
+* `{sample_id}.gene.exp`： 各样本gene水平结果文件
+* `gene.exp`： 全样本gene水平表达量矩阵
+* `transcript.exp`： 全样本transcript水平表达量矩阵
+* `merge.db.pickle`： 全样本分析数据，用于后续可视化分析
 
 
 ## TransAnnot的转录本分类方式
