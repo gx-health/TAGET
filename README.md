@@ -50,6 +50,10 @@ TransAnnot 是一款用于转录本结构注释的软件。
 
 * [{sample_id}.annot.cluster.reads]()  注释过reads的信息
 
+* [{sample_id}.annot.junction]()  Splice Junction 信息
+
+* [{sample_id}.annot.multiAnno]()  多注释情况下的详细概率信息
+
 ### {sample_id}.annot.stat 各列信息：
 
 * `ID`： reads ID
