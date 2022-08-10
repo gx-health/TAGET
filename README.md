@@ -103,21 +103,17 @@ The output files contain the following files:
 
 ## TransAnnotMerge
 
-用于多样本的联合分析
 
-举个例子，当样本1中发现了geneA的一个新转录本，样本2中同样发现了geneA的一个新转录本，然而他们在各自的结果文件中都叫做`geneA_NNC_1`，这个时候如何判断两个`geneA_NNC_1`是否具有相同结构、是不是相同的新转录本呢。
+We can use TransAnnotMerge to generate expression matrix of multi-samples
 
-再举个例子，我想要样本1、2、3中所有基因\转录本的表达量矩阵，然而各样本中都存在独特的、其他样本中没有的基因\转录本，该怎么办？
-
-此时可交由`TranAnnotMerge`处理。`TranAnnotMerge`将所有样本中的Isoform重新编排聚类，对新转录本、基因统一分配新的ID，输出新的聚类结果，当提供表达量数据时输出全样本的表达量矩阵
 
 ### TransAnnotMerge运行命令
 
 `python TranAnnotMerge -c MergeConfig -o outputdir -m [TPM/FLC/None]`
 
-包含3个参数：
 
-* `-c`： Merge Config，由4列内容组成，分别为[样本ID]()，[{sample_id}.annot.stat]()文件，[{sample_id}.annot.bed]()文件，[{sample_id}.annot.db.pickle]()文件。形如
+
+* `-c`： Merge Config，consist of four coloumn,sample ID() ，[{sample_id}.annot.stat]()，[{sample_id}.annot.bed]()，[{sample_id}.annot.db.pickle]()。形如
 
 | #sample | stat | bed | db |
 | ------- | ---- | --- | -- |
@@ -129,8 +125,7 @@ The output files contain the following files:
 ### TransAnnotMerge running
 
 1. extract isoform expression from fasta file：`python fa2exp.py -f [fa] -o [exp]`
-2. 将exp写入到**临时配置文件**中的**TPM_LIST**中，或用`-tpm`导入，运行TransAnnot：`python main.py -c config -tpm exp`
-3. 汇总各样本结果得到[MergeConfig]()，运行TranAnnotMerge: `python TranAnnotMerge -c MergeConfig -o outputdir -m TPM`
+2. running TranAnnotMerge: `python TranAnnotMerge -c MergeConfig -o outputdir -m TPM`
 
 ### TransAnnotMerge result file
 
