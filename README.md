@@ -6,7 +6,7 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 
 	git clone https://github....
 
-## 环境依赖
+## Environmental dependence
 
  * HISAT2/MINIMAP2/GMAP at least one
  * samtools
@@ -55,7 +55,7 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 
 * [{sample_id}.annot.multiAnno]()  多注释情况下的详细概率信息
 
-### {sample_id}.annot.stat 各列信息：
+### {sample_id}.annot.stat each coloumn：
 
 * `ID`： reads ID
 * `Classification`： classificatioin of reads
