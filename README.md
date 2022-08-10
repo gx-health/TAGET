@@ -103,7 +103,7 @@ The output files contain the following files:
 We can use TransAnnotMerge to generate expression matrix of multi-samples
 
 
-### TransAnnotMerge运行命令
+### Usage of TransAnnotMerge
 
 `python TranAnnotMerge -c MergeConfig -o outputdir -m [TPM/FLC/None]`
 
