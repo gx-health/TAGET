@@ -2,10 +2,6 @@
 
 TAGET is a computational toolkit that provides a wide spectrum of tools for analyzing full-length transcriptome data. Based on its highly precise transcript alignment and junction prediction, TAGET enables accurate novel isoform, gene fusion detection, and expression quantification analyses
 
-## software install
-
-	git clone https://github....
-
 ## Environmental dependence
 
  * HISAT2/MINIMAP2/GMAP at least one
