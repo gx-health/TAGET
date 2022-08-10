@@ -16,18 +16,19 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 ## FAST RUN
 
 	python main.py -f [fasta] -g [genome fasta] -o [output directory] -a[annot gtf] -p [process] --use_minimap2 [1] --use_hisat2 [hisat2 index]
+	
+	or you can use
+	
+	python main.py -c TransAnnot.Config
 
 ## software running
+1.the config file contain environmental path of each software and the index file of the reference genome 
 
-1. 软件所需参数可由以下3种方式传入，序号高的参数会覆盖低序参数：
-	1. 软件目录下的基础配置文件TransAnnot.Config
-	2. 参数 `-c [config]` 导入的临时配置文件
-	3. 直接导入参数
 
-2. 首次运行建议先调整基础配置文件[TransAnnot.Config](), 主要设置以后运行时不需要频繁改动的参数：
-	* 相关软件的环境变量
-	* 默认使用的映射软件、映射软件的INDEX文件路径
-	* 参考基因组(FASTA)、参考基因组注释文件（GTF）、默认PROCESS数
+2. you can set the following parameters at the first time
+	* the path of HISAT2/Minimap2
+	* the index file of reference genome
+	* reference genome(FASTA)、anotiation of transcript file default Ensemble（GTF）、process number
 
 3. 如有设置好的基础配置文件，运行某一样本时仅需提供**输入fasta文件**和**输出文件夹路径**即可。可由`-c config`设置这两行，也可由`-f [fatsa] -o [output]`设置
 
