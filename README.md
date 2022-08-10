@@ -17,7 +17,7 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 
 	python main.py -f [fasta] -g [genome fasta] -o [output directory] -a[annot gtf] -p [process] --use_minimap2 [1] --use_hisat2 [hisat2 index]
 
-## 软件运行
+## software running
 
 1. 软件所需参数可由以下3种方式传入，序号高的参数会覆盖低序参数：
 	1. 软件目录下的基础配置文件TransAnnot.Config
@@ -35,7 +35,7 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 
 5. 软件支持多样本的联合分析\表达量统计，可通过单独运行[TransAnnotMerge.py]()实现，具体操作说明见后续。
 
-## 运行结果
+## running result
 
 如未改动基础配置文件[TransAnnot.Config]()中的后缀参数，输出结果将有：
 
@@ -129,23 +129,23 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 | ------- | ---- | --- | -- |
 | ------- | ---- | --- | -- |
 
-* `-o`: 融合结果的输出目录
-* `-m`：选定表达量矩阵中的数值表示(需要前序分析中导入了表达量文件)，FLC指 full length count，不加此参数则无表达量矩阵
+* `-o`: the output dictionary
+* `-m`：the gene and transcript expression displayed by different methods,FLC: full length count，if none is not expression matrix
 
-### TransAnnotMerge流程演示
+### TransAnnotMerge running
 
-1. 从fa中提取Isoform表达量文件(exp)：`python fa2exp.py -f [fa] -o [exp]`
+1. extract isoform expression from fasta file：`python fa2exp.py -f [fa] -o [exp]`
 2. 将exp写入到**临时配置文件**中的**TPM_LIST**中，或用`-tpm`导入，运行TransAnnot：`python main.py -c config -tpm exp`
 3. 汇总各样本结果得到[MergeConfig]()，运行TranAnnotMerge: `python TranAnnotMerge -c MergeConfig -o outputdir -m TPM`
 
-### TransAnnotMerge结果文件
+### TransAnnotMerge result file
 
-* `{sample_id}.reads.exp`： 各样本read水平结果文件
-* `{sample_id}.transcript.exp`： 各样本transcript水平结果文件
-* `{sample_id}.gene.exp`： 各样本gene水平结果文件
-* `gene.exp`： 全样本gene水平表达量矩阵
-* `transcript.exp`： 全样本transcript水平表达量矩阵
-* `merge.db.pickle`： 全样本分析数据，用于后续可视化分析
+* `{sample_id}.reads.exp`： the read expression of each file
+* `{sample_id}.transcript.exp`： the transcript expression of each file
+* `{sample_id}.gene.exp`： the gene expression of each file
+* `gene.exp`： the gene expression matrix of each sample
+* `transcript.exp`： the transcirpt expression matrix of each sample
+* `merge.db.pickle`： view transcirpt
 ### DIU analysis
 `python expression_V1.py  -t {sample_id}.transcript.exp -g {sample_id}.gene.exp -o {prefix}`
 * `-t transcript expression of tumor and normal`
@@ -153,11 +153,10 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 * `-o prefix of outfile`
 * `-r default 0.05 filter the low express transcript`
 * `-p default 50 filter the low express gene`
-## TAGET的转录本分类方式
+## the classfication of isoform annotated by TAGET
 
-基于SQANTI的分类做了一些改动，目前有以下几类：
 
-### 转录本水平分类
+### the classfication of transcript
 
 * `FSM`: full splice site match
 * `ISM`: incomplete splice site match
@@ -168,7 +167,7 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 * `FUSION`: fusion
 * `UNKNOWN`： unknown
 
-### 外显子水平分类
+### the classfication of exon
 
 * `KE`: known exon
 * `LEKE`: left end known exon
