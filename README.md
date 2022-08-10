@@ -1,16 +1,17 @@
-# TransAnnot 使用手册
+# TAGET user manual
 
-TransAnnot 是一款用于转录本结构注释的软件。
+TAGET is a computational toolkit that provides a wide spectrum of tools for analyzing full-length transcriptome data. Based on its highly precise transcript alignment and junction prediction, TAGET enables accurate novel isoform, gene fusion detection, and expression quantification analyses
 
-## 软件安装
+## software install
 
 	git clone https://github....
 
 ## 环境依赖
 
- * HISAT2/MINIMAP2/GMAP中至少一款软件
+ * HISAT2/MINIMAP2/GMAP at least one
  * samtools
- * python3 （仅使用源生模块）
+ * python3
+ * R>=3.3
 
 ## FAST RUN
 
@@ -145,9 +146,14 @@ TransAnnot 是一款用于转录本结构注释的软件。
 * `gene.exp`： 全样本gene水平表达量矩阵
 * `transcript.exp`： 全样本transcript水平表达量矩阵
 * `merge.db.pickle`： 全样本分析数据，用于后续可视化分析
-
-
-## TransAnnot的转录本分类方式
+### DIU analysis
+python expression_V1.py  -t {sample_id}.transcript.exp -g {sample_id}.gene.exp -o {prefix}
+-t transcript expression of tumor and normal
+-g gene expression of tumor and normal
+-o prefix of outfile
+-r default 0.05 filter the low express transcript
+-p default 50 filter the low express gene
+## TAGET的转录本分类方式
 
 基于SQANTI的分类做了一些改动，目前有以下几类：
 
