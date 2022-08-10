@@ -113,7 +113,7 @@ We can use TransAnnotMerge to generate expression matrix of multi-samples
 
 
 
-* `-c`： Merge Config，consist of four coloumn,sample ID() ，[{sample_id}.annot.stat]()，[{sample_id}.annot.bed]()，[{sample_id}.annot.db.pickle]()。形如
+* `-c`： Merge Config，consist of four coloumn,sample ID() ，[{sample_id}.annot.stat]()，[{sample_id}.annot.bed]()，[{sample_id}.annot.db.pickle]()。
 
 | #sample | stat | bed | db |
 | ------- | ---- | --- | -- |
