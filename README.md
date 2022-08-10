@@ -30,31 +30,31 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 	* the index file of reference genome
 	* reference genome(FASTA)、anotiation of transcript file default Ensemble（GTF）、process number
 
-3. 如有设置好的基础配置文件，运行某一样本时仅需提供**输入fasta文件**和**输出文件夹路径**即可。可由`-c config`设置这两行，也可由`-f [fatsa] -o [output]`设置
+3. After setting the base parameters,you can set the fasta file of the full length transcript and the output dictionary or you can use `-c config` and `-f [fatsa] -o [output]`
+4. The reads\transcript\gene expression can be caculated by the parameter of --tpm
 
-4. 软件支持reads\transcript\gene水平的表达量统计，需要通过`--tpm`参数或`-c config`输入基于**reads ID**的表达量列表
 
-5. 软件支持多样本的联合分析\表达量统计，可通过单独运行[TransAnnotMerge.py]()实现，具体操作说明见后续。
 
 ## running result
 
-如未改动基础配置文件[TransAnnot.Config]()中的后缀参数，输出结果将有：
+The output files contain the following files:
 
-* [{sample_id}.annot.bed]() 注释过reads的bed格式结果
 
-* [{sample_id}.annot.stat]()  所有reads的注释统计结果
+* [{sample_id}.annot.bed]() the bed format with annotated genes
 
-* [{sample_id}.annot.db.pickle]()  分析数据，用于后续可视化分析
+* [{sample_id}.annot.stat]()  the annotations of each transcripts
 
-* [{sample_id}.annot.cluster.gene]()  注释过reads的gene水平聚类结果
+* [{sample_id}.annot.db.pickle]()  the input file of visualization
 
-* [{sample_id}.annot.cluster.transcript]()  注释过reads的transcript水平聚类结果
+* [{sample_id}.annot.cluster.gene]()  the cluster of genes
 
-* [{sample_id}.annot.cluster.reads]()  注释过reads的信息
+* [{sample_id}.annot.cluster.transcript]()  the cluster of transcript
 
-* [{sample_id}.annot.junction]()  Splice Junction 信息
+* [{sample_id}.annot.cluster.reads]()  the cluster of reads
 
-* [{sample_id}.annot.multiAnno]()  多注释情况下的详细概率信息
+* [{sample_id}.annot.junction]()  the information of splice junction file
+
+* [{sample_id}.annot.multiAnno]()  muliti-annotation transcript
 
 ### {sample_id}.annot.stat each coloumn：
 
