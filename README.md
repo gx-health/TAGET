@@ -19,7 +19,7 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 	
 	python main.py -c TransAnnot.Config
 ## Running time
-The running time is about 2hours with 8 core on a Linux server
+The running time is about less than 1 hours with 8 core on a Linux server
 
 ## software running
 1.the config file contain environmental path of each software and the index file of the reference genome 
@@ -187,5 +187,5 @@ python script.py input.config
 * `${i}.fa: the CCS read from Pacbio platform`
 * `name_${i}: the prefix of generated file name`
 ### An example of TAGET
-We can download data.7z,demo.7z and script.7z to run the demo, the running time is about 2 hours with 8 core on a Linux server.Details can be seen example.readme.
+We can download data.7z,demo.7z and script.7z to run the demo, the running time is about less than 1hours with 8 core on a Linux server.Details can be seen example.readme.
 Reference genome can be downlaod from https://disk.pku.edu.cn:443/link/1F62976F65C4EA81C4C06A05E245049D
