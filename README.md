@@ -8,6 +8,8 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
  * samtools
  * python3
  * R>=3.3
+ * Linux cento OS
+ * Python package:rpy2,pandas,numpy
 
 ## FAST RUN
 
@@ -16,6 +18,8 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 	or you can use
 	
 	python main.py -c TransAnnot.Config
+## Running time
+The running time is about 2hours with 8 core on a Linux server
 
 ## software running
 1.the config file contain environmental path of each software and the index file of the reference genome 
