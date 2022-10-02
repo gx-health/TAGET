@@ -120,6 +120,53 @@ def main(fa,prefix,outputdir):
     for i in cluster:
         transcriptExpCalc(i,expD,os.path.join(outputdir,os.path.basename(i.replace('.cluster','')+'.transcriptExp.tsv')))
     geneExpCalc(cluster,expD,os.path.join(outputdir,os.path.basename(prefix+'.geneExp.tsv')))
+    merge(prefix, outputdir)
+def merge(prefix,outputdir):
+    dic={}
+    for line in open(os.path.join(outputdir,prefix+'.SM.transcriptExp.tsv')):
+        newline=line.rstrip().split('\t')
+        t = newline[-1]
+        newline[-1] = newline[-2]
+        newline[-2] = t
+        if newline[0] not in dic:
+            dic[newline[0]]=[newline]
+        else:
+            dic[newline[0]].append(newline)
+    for line in open(os.path.join(outputdir,prefix+'.NC.transcriptExp.tsv')):
+        newline=line.rstrip().split('\t')
+        t = newline[-1]
+        newline[-1] = newline[-2]
+        newline[-2] = t
+        if newline[0] not in dic:
+            dic[newline[0]]=[newline]
+        else:
+            dic[newline[0]].append(newline)
+    for line in open(os.path.join(outputdir,prefix+'.GENIC.transcriptExp.tsv')):
+        newline=line.rstrip().split('\t')
+        t=newline[-1]
+        newline[-1]=newline[-2]
+        newline[-2]=t
+        if newline[0] not in dic:
+            dic[newline[0]]=[newline]
+        else:
+            dic[newline[0]].append(newline)
+    dic1={}
+    for line in open(os.path.join(outputdir,prefix+'.IsoformExp.tsv')):
+        newline=line.rstrip().split('\t')
+        if newline[3] not in dic1:
+            dic1[newline[3]]=newline[5]
+        else:
+            continue
+    outfile=open(os.path.join(outputdir,prefix+'.transcript.exp'),'w')
+    outfile.write('Chrom\tGene\tTranscript\tReadsCount\tReadsID\tTPM\tFLC\n')
+    for line in dic:
+        for tmp in dic[line]:
+            if line in dic1:
+                outfile.write(dic1[line]+'\t'+'\t'.join(tmp)+'\n')
+            else:
+                chr1=line.split(':')
+                outfile.write(chr1[0] + '\t' + '\t'.join(tmp) + '\n')
+    outfile.close()
 
 
 def option(argv):
