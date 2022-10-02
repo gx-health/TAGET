@@ -107,6 +107,8 @@ The output files contain the following files:
 We can use TransAnnotMerge to generate expression matrix of multi-samples
 
 ### FAST RUN
+ extract isoform expression from fasta file：`python fa2exp.py -f [fa] -i [prefix] -o [exp]`
+ prefix of '.SM.cluster''.NC.cluster','.FUSION.cluster' and '.GENIC.cluster' files
 python script.py input.config
 ### Usage of TransAnnotMerge
 
