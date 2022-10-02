@@ -434,11 +434,16 @@ def compute_DTE(filename,output,filter_expression=1):
             if max(tmp)<filter_expression:
                     continue
             else:
-
-                if newline[0] not in dic:
-                    dic[newline[0]]=[[newline[1]]+[float(t) for t in newline[2:]]]
+                if len(newline)==4:
+                    if newline[0] not in dic:
+                        dic[newline[0]]=[[newline[1]]+[float(t) for t in newline[2:]]]
+                    else:
+                        dic[newline[0]].append([newline[1]]+[float(t) for t in newline[2:]])
                 else:
-                    dic[newline[0]].append([newline[1]]+[float(t) for t in newline[2:]])
+                    if newline[1] not in dic:
+                        dic[newline[1]]=[[newline[2]]+[float(t) for t in newline[3:]]]
+                    else:
+                        dic[newline[1]].append([newline[2]]+[float(t) for t in newline[3:]])
         else:
             continue
 
