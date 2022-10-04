@@ -9,10 +9,10 @@ Rscript TAGET_fusion_2-3_ajust.r -j Jin_fusion_select.py -e STAT_select.py -l 75
 ###3.For DIU analysis
 
 ###1) generate expression file
-cd 759133C
-python3 ../fa2exp.py -f ../fa/759133C.fa -i 759133C.fa.anno.final -o 759133C.expression
-cd 759133N
-python3 ../fa2exp.py -f ../fa/759133N.fa -i 759133N.fa.anno.final -o 759133N.expression
+
+python3 fa2exp.py -f /public/source/share/zcs/ISOtect/final1/fa/759133N.fa -i 759133N.annot -o /public/source/share/zcs/ISOtect/final1/fa/759133N/ -p /public/source/share/zcs/ISOtect/final1/fa/759133N/
+
+python3 fa2exp.py -f /public/source/share/zcs/ISOtect/final1/fa/759133N.fa -i 759133N.annot -o /public/source/share/zcs/ISOtect/final1/fa/759133N/ -p /public/source/share/zcs/ISOtect/final1/fa/759133N/
 
 ###2)this step can generate merge file of tumor and nomral and will compute differential gene expression by  using DEG-Seq
 python script.py input.config
