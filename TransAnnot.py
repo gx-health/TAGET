@@ -66,15 +66,15 @@ def main():
     if config['USE_HISAT2'] == '1':
         utils.runSplit(config)
 
-    #minimap2Bed = utils.runMinimap2(config) if config['USE_MINIMAP2'] == '1' else None
-    #gmapBed = utils.runGmap(config) if config['USE_GMAP'] == '1' else None
-    #hisat2Bed = utils.runHisat2(config) if config['USE_HISAT2'] == '1' else None
+    minimap2Bed = utils.runMinimap2(config) if config['USE_MINIMAP2'] == '1' else None
+    gmapBed = utils.runGmap(config) if config['USE_GMAP'] == '1' else None
+    hisat2Bed = utils.runHisat2(config) if config['USE_HISAT2'] == '1' else None
     print('load gtf annotation')
     DB = gtf2db.dict_make(config['GTF_ANNOTATION'])
     print('Annotate transcript')
-    #BedAnnot.main(hisat2Bed, minimap2Bed, gmapBed, config['OUTPUT_DIR'],config['SAMPLE_UNIQUE_NAME'], config['ANNO_SUFFIX_1'], DB, config['GENOME_FA'],TPM=config['TPM_LIST'], report=config['REPORT_IN_RUNNING'])
-    cmd='python3 /public/source/share/zcs/ISOtect/script/v0417/ISO_anno_combine.py -2 '+config['SAMPLE_UNIQUE_NAME']+'.hisat2.bed -3 '+config['SAMPLE_UNIQUE_NAME']+'.minimap2.bed -d '+ config['GTF_DB']+ ' -o '+os.path.join(config['OUTPUT_DIR'],config['SAMPLE_UNIQUE_NAME']+.anno.stat2
-    print(cmd)
+    BedAnnot.main(hisat2Bed, minimap2Bed, gmapBed, config['OUTPUT_DIR'],config['SAMPLE_UNIQUE_NAME'], config['ANNO_SUFFIX_1'], DB, config['GENOME_FA'],TPM=config['TPM_LIST'], report=config['REPORT_IN_RUNNING'])
+    cmd='python3 /public/source/share/zcs/ISOtect/script/v0417/ISO_anno_combine.py -2 '+os.path.join(config['OUTPUT_DIR'],config['SAMPLE_UNIQUE_NAME'])+'.hisat2.bed -3 '+os.path.join(config['OUTPUT_DIR'],config['SAMPLE_UNIQUE_NAME'])+'.minimap2.bed -d '+ config['GTF_DB']+ ' -o '+os.path.join(config['OUTPUT_DIR'],config['SAMPLE_UNIQUE_NAME'])+'.anno.tmp'
+    #print(cmd)
     os.system(cmd)
     print('\nFinished !\n')
 

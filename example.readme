@@ -1,10 +1,10 @@
 ###1.For annotaion
-python main.py -c C.Config
-python main.py -c N.Config
+python3 /public/source/share/zcs/v20210402_1/TransAnnot.py -c  /public/source/share/zcs/v20210402_1/759133C.config
+python3 /public/source/share/zcs/v20210402_1/TransAnnot.py -c  /public/source/share/zcs/v20210402_1/759133N.config
 
 ###2.For gene fusion
 
-Rscript TAGET_fusion_2-3_ajust.r -j Jin_fusion_select.py -e STAT_select.py -l 759133C.fa.long.bed -s 759133C.fa.short.bed -a 759133C.fa.anno.final.stat -t hg38.gtf -f 759133C.fa -n name_759133C -o ./output
+Rscript TAGET_fusion_2-3_ajust.r -j Jin_fusion_select.py -e STAT_select.py -l 759133C.fa.minimap2.bed -s 759133C.fa.hisat2.bed -a 759133N.anno.tmp.stat -t hg38.gtf -f 759133C.fa -n name_759133C -o ./output
 
 ###3.For DIU analysis
 
