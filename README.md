@@ -13,11 +13,11 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
 
 ## FAST RUN
 
-	python TransAnnot.py.py -f [fasta] -g [genome fasta] -o [output directory] -a[annot gtf] -p [process] --use_minimap2 [1] --use_hisat2 [hisat2 index]
+	python TransAnnot.py -f [fasta] -g [genome fasta] -o [output directory] -a[annot gtf] -p [process] --use_minimap2 [1] --use_hisat2 [hisat2 index]
 	
 	or you can use
 	
-	python TransAnnot.py.py -c TransAnnot.Config
+	python TransAnnot.py -c TransAnnot.Config
 ## Running time
 The running time is about less than 1 hours with 8 core on a Linux server
 
