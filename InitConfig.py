@@ -19,8 +19,8 @@ def configRead(options_dict,config,basecheck=0):
             line = i.strip('\n').split('=')
             if basecheck: options_dict[line[0].strip()] = line[1].strip()
             elif line[1].strip(): options_dict[line[0].strip()] = line[1].strip()
-    if basecheck and len(options_dict) != __BASELENGTH__:
-        warning()
+    #if basecheck and len(options_dict) != __BASELENGTH__:
+    #    warning()
     return options_dict
 
 
