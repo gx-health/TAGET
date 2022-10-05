@@ -148,8 +148,10 @@ def db_patch():
 
 
 def main():
-    gtf = r'/public/source/share/zcs/data/GTF/hg38.ensembl.gtf'
-    gtf_db = r'/public/source/share/zcs/data/GTF/hg38.ensembl.v20200306.1.pickle'
+    #gtf = r'/public/source/share/zcs/data/GTF/hg38.ensembl.gtf'
+    #gtf_db = r'/public/source/share/zcs/data/GTF/hg38.ensembl.v20200306.1.pickle'
+    gtf=sys.argv[1]
+    gtf_db=sys.argv[2]
     dict_make(gtf, gtf_out=gtf_db)
     db_patch()
 
