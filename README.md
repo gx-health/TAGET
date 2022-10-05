@@ -85,6 +85,8 @@ The output files contain the following files:
 * `GTF_ANNOTATION`:`[path]`，the annotion file of gene default gtf format
 * `PROCESS`: `[int]`,the number of process
 * `SAMPLE_UNIQUE_NAME`:`[string]`,the output prefix of each files
+* `PYTHON`:`[path]`，the pathway of python
+* `TAGET_DIR`:`[path]`，the pathway of TAGET
 * `SAMTOOLS`:`[path]`，the pathway of samtools
 * `USE_HISAT2`: `[int]`，wether or not use HISAT2, 1 means use,0 means not use
 * `HISAT2`: `[path]`,the pathway of Hisat2
