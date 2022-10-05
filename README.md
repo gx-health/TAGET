@@ -110,10 +110,11 @@ The output files contain the following files:
 We can use TransAnnotMerge to generate expression matrix of multi-samples
 
 ### FAST RUN
- extract isoform expression from fasta file：`python fa2exp.py -f [fa] -i [prefix] -o [exp] -p [taget output dictionary]`
- *-f full length transcript fasta format file
-*-o output dictionary
-*-p prefix of {sample_uniqe_name}.anno files
+ extract isoform expression from fasta file：
+ `python fa2exp.py -f [fa] -i [prefix] -o [exp] -p [taget output dictionary]`
+ * `-f`: full length transcript fasta format file
+*`-o`: output dictionary
+*`-p`: prefix of {sample_uniqe_name}.anno files
 `python script.py input.config`
 This step needs to use exon.gtf file,this can be unzipped by using unzip exon.gtf.zip
 ### Usage of TransAnnotMerge
