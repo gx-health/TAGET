@@ -10,7 +10,7 @@ Rscript TAGET_fusion_2-3_ajust.r -j Jin_fusion_select.py -e STAT_select.py -l 75
 
 ###1) generate expression file
 
-python3 fa2exp.py -f /public/source/share/zcs/ISOtect/final1/fa/759133N.fa -i 759133N.annot -o /public/source/share/zcs/ISOtect/final1/fa/759133N/ -p /public/source/share/zcs/ISOtect/final1/fa/759133N/
+python3 fa2exp.py -f /public/source/share/zcs/ISOtect/final1/fa/759133C.fa -i 759133C.annot -o /public/source/share/zcs/ISOtect/final1/fa/759133C/ -p /public/source/share/zcs/ISOtect/final1/fa/759133C/
 
 python3 fa2exp.py -f /public/source/share/zcs/ISOtect/final1/fa/759133N.fa -i 759133N.annot -o /public/source/share/zcs/ISOtect/final1/fa/759133N/ -p /public/source/share/zcs/ISOtect/final1/fa/759133N/
 
