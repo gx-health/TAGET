@@ -120,7 +120,7 @@ We can use TransAnnotMerge to generate expression matrix of multi-samples
  
 `python script.py input.config`
 
-This step needs to use exon.gtf file,this can be unzipped by using unzip exon.gtf.zip
+This step needs to use exon.gtf file,which can be unzipped by using unzip exon.gtf.zip
 ### Usage of TransAnnotMerge
 
 `python TranAnnotMerge -c MergeConfig -o outputdir -m [TPM/FLC/None]`
