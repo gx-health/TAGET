@@ -116,7 +116,7 @@ We can use TransAnnotMerge to generate expression matrix of multi-samples
  
  * `-f`: full length transcript fasta format file
  * `-o`: output dictionary
- * -p`: prefix of {sample_uniqe_name}.anno files
+ * `-p`: prefix of {sample_uniqe_name}.anno files
  
 `python script.py input.config`
 
