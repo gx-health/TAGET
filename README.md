@@ -9,7 +9,8 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
  * python3
  * R>=3.3
  * Linux cento OS
- * Python package:rpy2,pandas,numpy
+ * Python packages:rpy2,pandas,numpy
+ * R packages:stringr,optparse,DEGseq
 
 ## FAST RUN
 
