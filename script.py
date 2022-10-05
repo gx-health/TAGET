@@ -139,7 +139,7 @@ def write_merge(trans_out_exp1,trans_out_exp2,trans_outfile,filename1,filename2)
 
 
 def write_merge_known(trans_outfile):
-    outfile_known = trans_outfile + '.knwon'
+    outfile_known = trans_outfile + '.known'
     fo = open(outfile_known,'w')
     for row in open(trans_outfile):
         if row.startswith('Chrom'):
@@ -331,7 +331,7 @@ def main():
         trans_outfile_known = write_merge_known(trans_outfile)
         print('transcript合并过滤文件成功生成。')
         if DEG_runtime:
-            trans_outfile1_diff = os.path.join(diff_dir, str(out_sample + '.trans.exp.knwon'))
+            trans_outfile1_diff = os.path.join(diff_dir, str(out_sample + '.trans.exp.known'))
             mkdir(diff_dir)
             mkdir(trans_outfile1_diff)
             try:
