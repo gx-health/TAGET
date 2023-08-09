@@ -21,8 +21,9 @@ option_list <- list(
   make_option(c("-n", "--name"), type="character", default= FALSE, action = "store",
               help="name of output files"),
   make_option(c("-o", "--output"), type="character", default= "Fusion_annotation_TAGET", 
-              help="To specify output path"))
-
+              help="To specify output path"),
+  make_option(c("-c", "--chu"), type="character", default= FALSE, action = "store",
+              help="python script for chuli"))
 
 parser <- OptionParser(usage = "%prog [options]", option_list=option_list,
                        description = "\nThe script is to annotate breakpoint of fusions from TAGET bed results (Hisat2 or Minimap2).",
@@ -38,7 +39,7 @@ fafile=arguments$fa
 
 pyfile=arguments$py
 pystatfile=arguments$select
-
+pychuli=arguments$chu
 gtffile=arguments$gtf
 path=arguments$output
 name=arguments$name
@@ -120,7 +121,9 @@ b <- subset(b, V1 > 0)
 
 write.table(b, paste0(path,"/data/",name,".data.bed"), sep="\t",row.names=F, col.names=F,quote=F)
 system(paste0("bedtools intersect -a ", path,"/data/",name,".data.bed", " -b ", path, "/genome_gene.bed -loj | bedtools groupby -i - -g 1-8 -c 12 -o collapse > ",path,"/data/",name,".annotation.bed"))
-system(paste0("bedtools intersect -a ", path,"/data/",name,".annotation.bed", " -b ", path, "/genome_exon.bed -loj | bedtools groupby -i - -g 1-9 -c 13 -o collapse > ",path,"/data/",name,".annotation_exon.bed"))
+#print(paste0("python ",pychuli," ",path,"/data/",name,".annotation.bed",path,"/data/",name,".annotation1.bed"))
+system(paste0("python ",pychuli," ",path,"/data/",name,".annotation.bed"," ",path,"/data/",name,".annotation1.bed"))
+system(paste0("bedtools intersect -a ", path,"/data/",name,".annotation1.bed", " -b ", path, "/genome_exon.bed -loj | bedtools groupby -i - -g 1-9 -c 13 -o collapse > ",path,"/data/",name,".annotation_exon.bed"))
 
 print("annotation complete")
 
