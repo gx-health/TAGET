@@ -8,7 +8,7 @@ TAGET is a computational toolkit that provides a wide spectrum of tools for anal
  * samtools
  * python3
  * R>=3.3
- * Linux cento OS
+ * Linux centos
  * Python packages:rpy2,pandas,numpy
  * R packages:stringr,optparse,DEGseq
 
@@ -436,7 +436,7 @@ python gtf_db_make.py hg38.ensembl.gtf hg38.ensembl.v20200306.1.pickle
 * samtools v1.19
 * python3.9
 * R3.5
-* Linux cento OS7
+* Linux centos7
 * Python packages:
 * rpy2 v3.3.3
 * pandas v1.2.3
@@ -450,7 +450,7 @@ python gtf_db_make.py hg38.ensembl.gtf hg38.ensembl.v20200306.1.pickle
 
 python TransAnnot.py -c 759133C.Config
 python TransAnnot.py -c 759133N.Config
-
+running time:72 minutes
 outputs:
 the dictionary of 759133C
 759133C.minimap2.bed
@@ -483,21 +483,21 @@ the dictionary of 759133N
 python fa2exp.py -f 759133C.fa -i 759133C -o 759133C -p ./expression
 python fa2exp.py -f 759133N.fa -i 759133N -o 759133N -p ./expression
 python script.py input.config
-
+running time:35 minutes
 outputs
 759133.reads.exp
 759133.transcript.exp
 
 3.DIU analysis
 python expression_V1.py  -t 759133.transcript.exp -g 759133.gene.exp -o 759133
-
+running time:2 minutes
 outputs:
 759133_DIU.txt
 
 4 gene fusion
 
 Rscript TAGET_fusion_2-3_ajust.r -j Jin_fusion_select.py -e STAT_select.py -c chuli.py -l 759133C.minimap2.bed -s 759133C.hisat2.bed -a 759133C.fa.anno.tmp.stat -t hg38.gtf -f 759133C.fa -n 759133C -o ./output
-
+running time:18 minutes
 output
 759133C.fusion
 
